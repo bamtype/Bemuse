@@ -1,0 +1,35 @@
+- if user_signed_in?
+  %p#intro
+    Gezzelig
+    = current_user.name
+    %br/
+    %span
+      inspiratie bewegen me helder
+-else
+  %p#intro
+    Why Wait?
+    %br/
+    %span
+      inspiratie bewegen me helder
+
+#posts
+  - @posts.each do |post|
+    .post
+      .post_image
+        = link_to (image_tag post.image.url(:medium)), post
+      .post_comment
+        .title
+          %h2= link_to post.title, post
+        .data.clearfix
+          %p.username
+            Shared By
+            = post.user_id
+          %p.buttons
+            %span
+              %i.fa.fa-comments-o
+              =post.comments.count
+            %span
+              %i.fa.fa-thumbs-o-up
+              =post.get_likes.size
+
+
